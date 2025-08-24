@@ -1,0 +1,33 @@
+/* frontend/src/App.css */
+:root{
+  --neon-cyan: #00f7ff;
+  --neon-pink: #ff00d0;
+  --bg: #05060a;
+  --panel: rgba(0,0,0,0.6);
+  --accent: #00f7ff;
+  --danger: #ff3366;
+  font-family: 'Orbitron', sans-serif;
+}
+
+body, html, #root { height: 100%; margin: 0; background: radial-gradient(circle at 10% 10%, #071024 0%, #000 60%); color: var(--neon-cyan); }
+
+.chat-wrapper { max-width: 980px; margin: 2rem auto; padding: 1rem; }
+.topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom: 1rem; }
+.title { font-size: 1.6rem; color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink); font-weight:700; }
+.session-controls { display:flex; gap:0.5rem; align-items:center; }
+.session-input { background:transparent; border:1px solid #123; color:var(--neon-cyan); padding:6px 10px; border-radius:6px; min-width:160px; }
+.tiny-btn { padding:6px 8px; background:var(--neon-pink); border:none; color:black; border-radius:6px; cursor:pointer; }
+
+.chat-panel { background: var(--panel); border: 1px solid rgba(0,255,255,0.08); border-radius:12px; padding:16px; display:flex; flex-direction:column; min-height:70vh; box-shadow: 0 8px 40px rgba(0,0,0,0.6); }
+
+.messages { flex:1; overflow:auto; padding:6px; display:flex; flex-direction:column; gap:8px; }
+.bubble { max-width:80%; padding:10px 12px; border-radius:10px; line-height:1.4; white-space:pre-wrap; }
+.bubble.user { align-self:flex-end; background: linear-gradient(90deg, rgba(0,255,170,0.08), rgba(0,255,170,0.02)); color:var(--neon-cyan); border:1px solid rgba(0,255,170,0.12); text-shadow:0 0 6px rgba(0,255,170,0.08); }
+.bubble.bot { align-self:flex-start; background: linear-gradient(90deg, rgba(255,0,210,0.04), rgba(255,0,210,0.01)); color:var(--neon-pink); border:1px solid rgba(255,0,210,0.08); text-shadow:0 0 6px rgba(255,0,210,0.06); }
+
+.status-row { display:flex; justify-content:space-between; padding:8px 6px; color: #bfe; font-size:0.95rem; opacity:0.9; }
+.secret-indicator { color: var(--danger); font-weight:700; }
+
+.composer { display:flex; gap:8px; margin-top:12px; }
+.composer-input { flex:1; padding:10px; background:transparent; border:1px solid rgba(0,255,255,0.06); color:var(--neon-cyan); border-radius:8px; }
+.send-btn { padding:10px 14px; background:var(--neon-pink); color:black; border:none; border-radius:8px; cursor:pointer; font-weight:700; }
