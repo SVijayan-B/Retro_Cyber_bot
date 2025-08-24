@@ -1,0 +1,21 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# Env
+.env
+.env.*
+
+# Node (future frontend)
+node_modules/
+dist/
+.vite/
+.vscode/
+
+# OS/IDE
+.DS_Store
+Thumbs.db
