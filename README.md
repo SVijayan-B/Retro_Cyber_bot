@@ -30,28 +30,17 @@ the dark mystique of **Darth Vader** with the neon-soaked vibes of **80s arcade 
 - **State Management**: In-memory session tracking for chapters & fragments  
 
 
-## visual Documentation
- ┌───────────────────────────────┐
- │          Frontend              │
- │   • React + Vite UI            │
- │   • Neon Retro Theme           │
- │   • Chat Interface             │
- └───────────────▲────────────────┘
-                 │ REST API
- ┌───────────────┴────────────────┐
- │          Backend (FastAPI)      │
- │   • Routes (/api/chat)          │
- │   • StoryEngine (chapters)      │
- │   • Emotion Analyzer (LLM eval) │
- │   • Memory Manager (sessions)   │
- └───────────────▲────────────────┘
-                 │
- ┌───────────────┴────────────────┐
- │       AI Layer (Gemini)         │
- │   • Generates immersive story   │
- │   • Evaluates emotions          │
- │   • Provides riddles            │
- └─────────────────────────────────┘
+## visual DocumentationUser ──(message)──▶ Frontend (React UI) 
+       ◀─(reply)─── Backend (FastAPI + StoryEngine)
+                         │
+                         ▼
+                   Emotion Analyzer
+                         │
+                         ▼
+                   Google Gemini API
+                         │
+                         ▼
+                   Story + Riddle Generation
 
 
 ## story flow to unlock the key 
