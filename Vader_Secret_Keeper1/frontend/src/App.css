@@ -12,17 +12,18 @@ body {
   overflow: hidden;
 }
 
+/* ===== CHAT WRAPPER (semi-transparent holo) ===== */
 .chat-wrapper {
   width: 90%;
   max-width: 900px;
   height: 90vh;
   display: flex;
   flex-direction: column;
-  border: 2px solid red;
-  box-shadow: 0 0 20px rgb(0, 255, 247);
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(4px);
-  border-radius: 10px;
+  border: 2px solid rgba(255, 0, 0, 0.7); /* softer neon red */
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+  background: rgba(10, 10, 20, 0.65);      /* <--- more transparent */
+  backdrop-filter: blur(6px);              /* glassy blur effect */
+  border-radius: 12px;
   overflow: hidden;
   position: relative;
 }
@@ -34,7 +35,8 @@ body {
   align-items: center;
   padding: 10px 15px;
   border-bottom: 2px solid rgb(0, 255, 251);
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.5);  /* semi-transparent */
+  backdrop-filter: blur(4px);
 }
 
 .title {
@@ -49,7 +51,7 @@ body {
 }
 
 .session-input {
-  background: black;
+  background: rgba(0,0,0,0.6);
   border: 1px solid rgb(0, 17, 255);
   color: #fff;
   padding: 5px 8px;
@@ -58,7 +60,7 @@ body {
 }
 
 .tiny-btn {
-  background: black;
+  background: rgba(0,0,0,0.6);
   border: 1px solid red;
   color: red;
   cursor: pointer;
@@ -78,7 +80,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  min-height: 0;   /* allows flex children to shrink properly */
+  min-height: 0;
 }
 
 /* SCROLLABLE MESSAGES */
@@ -89,7 +91,7 @@ body {
   flex-direction: column;
   gap: 10px;
   padding-right: 5px;
-  scrollbar-width: thin;            /* Firefox */
+  scrollbar-width: thin;
   scrollbar-color: red transparent;
 }
 
@@ -97,7 +99,7 @@ body {
   width: 8px;
 }
 .messages::-webkit-scrollbar-thumb {
-  background: rgb(0, 238, 255);
+  background: rgb(255, 0, 0);
   border-radius: 4px;
   box-shadow: 0 0 8px red;
 }
@@ -113,15 +115,15 @@ body {
 
 .bubble.bot {
   align-self: flex-start;
-  background: rgba(255, 0, 0, 0.1);
-  border: 1px solid red;
+  background: rgba(255, 0, 0, 0.15); /* translucent red */
+  border: 1px solid rgba(255, 0, 0, 0.6);
   color: #fff;
   text-shadow: 0 0 8px red;
 }
 
 .bubble.user {
   align-self: flex-end;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 255, 255, 0.1); /* translucent cyan */
   border: 1px solid cyan;
   color: cyan;
   text-shadow: 0 0 6px cyan;
@@ -135,6 +137,8 @@ body {
   font-size: 0.9rem;
   color: #aaa;
   border-top: 1px solid red;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(3px);
 }
 
 /* ===== COMPOSER ===== */
@@ -143,7 +147,8 @@ body {
   border-top: 2px solid rgb(0, 221, 255);
   padding: 8px;
   gap: 8px;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
 }
 
 .composer-input {
@@ -151,7 +156,7 @@ body {
   padding: 8px;
   border: 1px solid red;
   border-radius: 4px;
-  background: black;
+  background: rgba(0,0,0,0.6);
   color: white;
   font-family: inherit;
 }
@@ -160,7 +165,7 @@ body {
   padding: 8px 14px;
   border: 1px solid rgb(0, 251, 255);
   border-radius: 4px;
-  background: black;
+  background: rgba(0,0,0,0.6);
   color: red;
   cursor: pointer;
   text-shadow: 0 0 8px red;
