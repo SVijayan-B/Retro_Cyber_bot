@@ -9,11 +9,45 @@ from backend.core.emotion_analyzer import llm_evaluate
 from backend.core.vader_personality import format_vader_line
 
 # Chapter emotion requirements (internal only, not shown to player)
+# backend/core/story_engine.py
+
+# Chapter emotion requirements (internal only, not shown to player)
 CHAPTER_DEFS = {
-    1: {"theme": "Curiosity and Anger", "required": ["curiosity", "anger"]},
-    2: {"theme": "Dominance", "required": ["dominance"]},
-    3: {"theme": "Realisation and Peace", "required": ["realisation", "peace"]},
+    1: {
+        "theme": "Curiosity and Anger",
+        "required": [
+            # Curiosity synonyms
+            "curiosity", "curious", "wonder", "explore", "exploration",
+            "seek", "seeking", "inquisitive", "inquiry", "question",
+            "knowledge", "interest", "discovery","learn", "learning",
+            "investigate", "investigation",
+            # Anger synonyms
+            "anger", "angry", "rage", "furious", "fury", "wrath",
+            "resentment", "hatred", "mad", "irritation", "frustration","annoyance"
+        ]
+    },
+    2: {
+        "theme": "Dominance",
+        "required": [
+            "dominance", "dominant", "power", "command", "control",
+            "authority", "rule", "strength", "mastery", "supremacy",
+            "lead", "conquer", "overcome", "prevail", "dominate","survive","possess"
+        ]
+    },
+    3: {
+        "theme": "Realisation and Peace",
+        "required": [
+            # Realisation synonyms
+            "realisation", "realization", "insight", "awakening", "understanding",
+            "awareness", "clarity", "recognition", "epiphany", "truth","realize","understand",
+            "aware", "aware of","aware of truth",
+            # Peace synonyms
+            "peace", "calm", "serenity", "tranquility", "harmony",
+            "balance", "stillness", "acceptance","accept", "resolution", "composure", "equanimity"
+        ]
+    },
 }
+
 FINAL_SECRET = "Peace is not the absence of emotion—it is mastery over it. Curiosity fuels growth, anger reveals truth, and dominance is not destruction, but the strength to protect without fear. The force within is not meant to be silenced, but understood"
 
 class StoryEngine:
