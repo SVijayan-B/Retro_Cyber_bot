@@ -9,7 +9,7 @@ export default function App() {
   const [sessionId, setSessionId] = useState("trial-01");
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
-    { role: "bot", text: "⚡ Vardarth: Speak 'begin' to start the trial." }
+    { role: "bot", text: "🌌 Vardarth: Speak 'begin' to start the trial." }
   ]);
   const [loading, setLoading] = useState(false);
   const [chapter, setChapter] = useState(0);
@@ -20,19 +20,6 @@ export default function App() {
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
-
-  // Matrix rain setup
-  useEffect(() => {
-    const container = document.querySelector(".matrix-rain");
-    if (!container) return;
-    for (let i = 0; i < 40; i++) {
-      const span = document.createElement("span");
-      span.innerText = Math.random() > 0.5 ? "01"[Math.floor(Math.random() * 2)] : "█";
-      span.style.left = `${Math.random() * 100}%`;
-      span.style.animationDuration = `${3 + Math.random() * 5}s`;
-      container.appendChild(span);
-    }
-  }, []);
 
   async function sendMessageAsUser(text) {
     if (!text || loading) return;
@@ -59,7 +46,7 @@ export default function App() {
       }
     } catch (err) {
       console.error(err);
-      let errMsg = "Network or server error. Check backend is running.";
+      let errMsg = "🚨 Network or server error. Check backend is running.";
       if (err.response && err.response.data) {
         errMsg = `Error: ${JSON.stringify(err.response.data)}`;
       }
@@ -77,17 +64,21 @@ export default function App() {
   const generateNewSession = () => {
     const id = `sess-${Date.now().toString(36)}`;
     setSessionId(id);
-    setMessages([{ role: "bot", text: "⚡ Vardarth: New session started. Say 'begin'." }]);
-    setChapter(0); setUnlocked(false); setSecret(null);
+    setMessages([{ role: "bot", text: "🌌 Vardarth: New session started. Say 'begin'." }]);
+    setChapter(0);
+    setUnlocked(false);
+    setSecret(null);
   };
 
   return (
-    <div className="chat-wrapper">
-      {/* Matrix overlay */}
-      <div className="matrix-rain"></div>
+    <div className="chat-wrapper starwars-theme">
+      {/* Background animation - optional spaceships */}
+      <div className="starfield"></div>
+      <div className="spaceship"></div>
+      <div className="spaceship delay"></div>
 
       <header className="topbar neon-text">
-        <div className="title">🌌 Vader Secret Keeper</div>
+        <div className="title">🛰️ Vader Secret Keeper</div>
         <div className="session-controls">
           <input
             className="session-input neon-box"
@@ -95,14 +86,21 @@ export default function App() {
             onChange={(e) => setSessionId(e.target.value)}
             title="Session ID"
           />
-          <button onClick={generateNewSession} className="tiny-btn neon-btn">New</button>
+          <button onClick={generateNewSession} className="tiny-btn neon-btn">
+            New
+          </button>
         </div>
       </header>
 
       <main className="chat-panel">
         <div className="messages">
           {messages.map((m, i) => (
-            <div key={i} className={`bubble ${m.role === "user" ? "user neon-box" : "bot neon-box"}`}>
+            <div
+              key={i}
+              className={`bubble ${
+                m.role === "user" ? "user neon-box" : "bot neon-box"
+              }`}
+            >
               {m.text}
             </div>
           ))}
