@@ -18,32 +18,36 @@ export default function App() {
   const scrollRef = useRef();
 
   useEffect(() => {
-    // scroll to bottom
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
 
+  // Matrix rain setup
+  useEffect(() => {
+    const container = document.querySelector(".matrix-rain");
+    if (!container) return;
+    for (let i = 0; i < 40; i++) {
+      const span = document.createElement("span");
+      span.innerText = Math.random() > 0.5 ? "01"[Math.floor(Math.random() * 2)] : "█";
+      span.style.left = `${Math.random() * 100}%`;
+      span.style.animationDuration = `${3 + Math.random() * 5}s`;
+      container.appendChild(span);
+    }
+  }, []);
+
   async function sendMessageAsUser(text) {
     if (!text || loading) return;
-    // add user message
     setMessages((m) => [...m, { role: "user", text }]);
     setInput("");
     setLoading(true);
 
     try {
-      const payload = {
-        session_id: sessionId,
-        message: text,
-        mode: "story"
-      };
+      const payload = { session_id: sessionId, message: text, mode: "story" };
       const res = await axios.post(API_URL, payload, { timeout: 15000 });
 
-      // expected response fields: reply, question, chapter, unlocked, secret (optional)
       const data = res.data;
       const botTextParts = [];
-
       if (data.reply) botTextParts.push(data.reply);
       if (data.question) botTextParts.push("\n\n" + (data.question || ""));
-
       const botText = botTextParts.join(" ");
 
       setMessages((m) => [...m, { role: "bot", text: botText }]);
@@ -51,7 +55,6 @@ export default function App() {
       if (typeof data.unlocked !== "undefined") setUnlocked(Boolean(data.unlocked));
       if (data.secret) {
         setSecret(data.secret);
-        // show secret as special message
         setMessages((m) => [...m, { role: "bot", text: `🔐 SECRET: ${data.secret}` }]);
       }
     } catch (err) {
@@ -67,7 +70,6 @@ export default function App() {
   }
 
   const onSend = () => {
-    // if no input, do nothing
     if (!input.trim()) return;
     sendMessageAsUser(input.trim());
   };
@@ -81,33 +83,36 @@ export default function App() {
 
   return (
     <div className="chat-wrapper">
-      <header className="topbar">
+      {/* Matrix overlay */}
+      <div className="matrix-rain"></div>
+
+      <header className="topbar neon-text">
         <div className="title">🌌 Vader Secret Keeper</div>
         <div className="session-controls">
           <input
-            className="session-input"
+            className="session-input neon-box"
             value={sessionId}
             onChange={(e) => setSessionId(e.target.value)}
             title="Session ID"
           />
-          <button onClick={generateNewSession} className="tiny-btn">New</button>
+          <button onClick={generateNewSession} className="tiny-btn neon-btn">New</button>
         </div>
       </header>
 
       <main className="chat-panel">
         <div className="messages">
           {messages.map((m, i) => (
-            <div key={i} className={`bubble ${m.role === "user" ? "user" : "bot"}`}>
+            <div key={i} className={`bubble ${m.role === "user" ? "user neon-box" : "bot neon-box"}`}>
               {m.text}
             </div>
           ))}
           <div ref={scrollRef} />
         </div>
 
-        <div className="status-row">
+        <div className="status-row neon-text">
           <div>Chapter: {chapter} </div>
           <div>Unlocked: {unlocked ? "✔" : "✖"}</div>
-          {secret && <div className="secret-indicator">Secret found</div>}
+          {secret && <div className="secret-indicator">🔐 Secret found</div>}
         </div>
 
         <div className="composer">
@@ -115,11 +120,11 @@ export default function App() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && onSend()}
-            placeholder="Type your reply (e.g., 'begin' or your answer)..."
-            className="composer-input"
+            placeholder="Type your reply..."
+            className="composer-input neon-box"
             disabled={loading}
           />
-          <button onClick={onSend} className="send-btn" disabled={loading}>
+          <button onClick={onSend} className="send-btn neon-btn" disabled={loading}>
             {loading ? "..." : "Send"}
           </button>
         </div>

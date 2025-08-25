@@ -5,7 +5,8 @@ import json
 import re
 from backend.core.memory_manager import MEMORY
 from backend.services.llm_service import generate_text
-from backend.core.emotion_analyzer import llm_evaluate
+from backend.core.storygen import llm_evaluate
+
 from backend.core.vader_personality import format_vader_line
 
 # Chapter emotion requirements (internal only, not shown to player)

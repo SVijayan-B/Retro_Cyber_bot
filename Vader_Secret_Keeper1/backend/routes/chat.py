@@ -1,7 +1,8 @@
 # backend/routes/chat.py
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
-from backend.core.story_engine import ENGINE
+from backend.core.emotiongendect import ENGINE
+
 from backend.core.memory_manager import MEMORY
 
 router = APIRouter(tags=["chat"])
