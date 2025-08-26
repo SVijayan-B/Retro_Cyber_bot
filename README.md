@@ -71,7 +71,10 @@ the dark mystique of **Darth Vader** with the neon-soaked vibes of **80s arcade 
     python -m venv .venv
     .\.venv\Scripts\Activate.ps1
     pip install -r requirements.txt
-
+    
+**API KEY**
+    REMEMBER TO CREATE A API KEY AND PASTE IN THE ENV FILE (GEMINI_API_KEY:XXXXXXXXXXXXXXXX)
+    
 **Start Server**
     cd Vader_Secret_Keeper1
     uvicorn backend.app:app --reload
